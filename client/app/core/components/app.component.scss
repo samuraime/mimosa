@@ -1,0 +1,21 @@
+@import '../../../variables.scss';
+
+:host {
+  display: block;
+  width: 100%;
+  max-width: $containerWidth;
+  min-width: $containerMinWidth;
+  margin: auto;
+  height: 100%;
+  padding-bottom: 3em;
+}
+
+footer {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  line-height: 2em;
+  text-align: center;
+  color: #999;
+}

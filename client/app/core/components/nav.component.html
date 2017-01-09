@@ -1,0 +1,7 @@
+<ul>
+  <li><a [routerLink]="['archive']" routerLinkActive="active">Archives</a></li>
+  <li *ngIf="getLoggedIn() | async"><a [routerLink]="['new']"  routerLinkActive="active">New</a></li>
+  <li><a [routerLink]="['about']"  routerLinkActive="active">About</a></li>
+</ul>
+<div class="logged" *ngIf="!(getLoggedIn() | async)"><a [routerLink]="['login']">Login</a></div>
+<div class="logged" *ngIf="getLoggedIn() | async"><a href="#" (click)="logout()">Logout</a></div>

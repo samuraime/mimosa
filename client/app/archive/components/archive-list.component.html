@@ -1,0 +1,33 @@
+<input type="text" [(ngModel)]="search" placeholder="Search: filename or :tagname">
+<ul class="archives">
+  <li
+    *ngFor="let archive of archives | searchFilter:search; let i = index; let isOdd = odd"
+    (click)="select(archive)"
+    [class.odd]="isOdd"
+  >
+    <div class="info">
+      <span class="name">{{archive.name}}</span>
+      <span class="ext"><i [class]="archive.name | fileIcon"></i></span>
+      <span class="size">{{archive.size | size}}</span>
+    </div>
+    <ul class="tags">
+      <li
+        *ngFor="let tag of archive.tags; let i = index"
+        (click)="$event.stopPropagation(); setSearchTag(tag)"
+      >
+        {{tag}}
+      </li>
+    </ul>
+    <p class="comment" [title]="archive.comment">{{archive.comment}}</p>
+    <div class="buttons" (click)="$event.stopPropagation()">
+      <a [href]="'/archives/' + archive._id + '/download'"><i class="fa fa-cloud-download"></i></a>
+      <i *ngIf="authService.getLoggedIn() | async" (click)="remove(archive)" class="fa fa-trash"></i>
+    </div>
+  </li>
+</ul>
+<mms-archive-card
+  *ngIf="current"
+  [archive]="current"
+  (close)="select()"
+>
+</mms-archive-card>

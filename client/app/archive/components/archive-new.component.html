@@ -1,0 +1,40 @@
+<form (ngSubmit)="onSubmit($event)" [formGroup]="form">
+  <input #picker type="file" multiple (change)="onChange()">
+  <div class="target" 
+    (click)="onClick($event)"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave()"
+    (drop)="onDrop($event)"
+    [class.dragover]="isDragOver"
+  >
+    <i class="fa fa-cloud-upload"></i>
+    <p>Drop your files here!</p>
+  </div>
+  <ul>
+    <li *ngFor="let archive of archives; let i = index">
+      <span class="name">{{archive.upload.name || archive.name}}</span>
+      <div class="progress-container">
+        <div
+          class="progress"
+          [class.success]="archive.status === 'success'"
+          [class.error]="archive.status === 'error'"
+          [style.width]="archive.loaded / archive.total * 100 + '%'"
+        >
+        </div>
+        <div class="hint">{{archive.loaded | size}}/{{archive.total | size}}</div>
+      </div>
+      <span class="action">
+        <i (click)="edit(archive)" *ngIf="archive.status === 'success'" class="fa fa-pencil"></i>
+        <i (click)="reupload(archive)" *ngIf="archive.status === 'error'" class="fa fa-refresh"></i>
+        <i (click)="remove(archive)" class="fa fa-times"></i>
+      </span>
+    </li>
+  </ul>
+  <input type="submit" value="Upload">
+</form>
+<mms-archive-card
+  *ngIf="current"
+  [archive]="current"
+  (close)="removeCurrent()"
+>
+</mms-archive-card>

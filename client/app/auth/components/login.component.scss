@@ -1,0 +1,19 @@
+form {
+  max-width: 30em;
+  margin: 0 auto;
+}
+input {
+  width: 100%;
+  text-align: center;
+}
+.group {
+  margin: 1em 0;
+  label {
+    display: block;
+    margin-bottom: .5em;
+  }
+}
+.error {
+  margin: 1em 0;
+  color: #f00;
+}

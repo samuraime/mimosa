@@ -1,0 +1,28 @@
+<div class="card">
+  <i (click)="onClose()" class="fa fa-times close"></i>
+  <input class="name editable" type="text" [(ngModel)]="archive.name" placeholder="archive name">
+  <div class="meta">
+    <i [class]="archive.name | fileIcon"></i>
+    <span>{{archive.mimetype}}</span>
+    <span>{{archive.size | size}}</span>
+  </div>
+  <p class="datetime">CreatedAt: {{archive.createdAt | date:'y-M-dd H:mm:ss'}}</p>
+  <p #comment (blur)="archive.comment=comment.innerText" class="comment editable" contenteditable>
+    {{archive.comment || 'add some comments here'}}
+  </p>
+  <ul class="tags">
+    <li *ngFor="let tag of archive.tags; let i = index">
+      {{tag}}<i class="fa fa-times" (click)="removeTag(i)"></i>
+    </li>
+    <li class="add-input" [class.hidden]="!tagInputVisible">
+      <input #tagInput type="text" [(ngModel)]="tagInputValue" (keydown)="onTagInputChange($event)">
+    </li>
+    <li class="add" (click)="onClickAddTag($event)">
+      <i class="fa fa-plus"></i>Add
+    </li>
+  </ul>
+  <div class="buttons">
+    <button (click)="onClose()">Cancel</button>
+    <button (click)="update()" >Update</button>
+  </div>
+</div>

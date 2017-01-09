@@ -1,0 +1,36 @@
+@import './variables.scss';
+
+* {
+  outline: none;
+  box-sizing: border-box;
+  line-height: 1;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  position: relative;
+  min-height: 100%;
+  margin: 0;
+  padding: 0 1em;
+  color: $color;
+  font-family: 'Inconsolata';
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: $color;
+}
+
+input {
+  height: 2rem;
+  &[type="text"], &[type="password"] {
+    border: 1px solid #ddd;
+  }
+}

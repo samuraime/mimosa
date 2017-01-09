@@ -1,0 +1,97 @@
+@import '../../../variables';
+input {
+  display: block;
+  height: 2rem;
+  padding: .5em;
+  width: 50%;
+  transition: width .5s;
+  &:focus {
+    width: 100%;
+  }
+  &::placeholder {
+    font-style: italic;
+  }
+  &::-webkit-input-placeholder {
+    font-style: italic;
+  }
+}
+@media (max-width: $smallScreen) {
+  input {
+    width: 100%;
+  }
+}
+
+ul.archives {
+  list-style: none;
+  padding-left: 0;
+  & > li {
+    position: relative;
+    padding: 1em;
+    border: 1px solid #ddd;
+    border-width: 0 1px 1px;
+    box-sizing: content-box;
+    cursor: pointer;
+    &:first-child {
+      border-top-width: 1px;
+    }
+    .info {
+      padding-right: 3em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      .name {
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+      .size {
+        font-size: 0.8em;
+      }
+    }
+    &:hover .info {
+      color: hsl(120, 25%, 40%);
+    }
+    .comment {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    ul.tags {
+      padding: 0;
+      padding-top: .25em;
+      margin: .4em 0 .25em; 
+      list-style: none;
+      cursor: default;
+      li {
+        display: inline-block;
+        margin-right: .5em;
+        margin-bottom: .25em;
+        padding: .2em;
+        border: 1px solid hsl(120, 10%, 70%);
+        font-size: .9em;
+        cursor: pointer;
+        transition: background .2s;
+        &:hover {
+          background: #ddd;
+        }
+      }
+    }
+    &:hover .buttons {
+      opacity: 1;
+    }
+    .buttons {
+      position: absolute;
+      right: 1em;
+      top: 1em;
+      cursor: default;
+      opacity: 0.3;
+      transition: opacity 0.5s;
+      i {
+        cursor: pointer;
+        opacity: 0.7;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
