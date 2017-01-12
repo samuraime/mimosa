@@ -24,6 +24,7 @@
     "node": "7.2.1"
   },
   "dependencies": {
+    "bluebird": "^3.4.7",
     "gulp-delete-lines": "^0.0.7",
     "jsonwebtoken": "7.2.1",
     "koa": "^2.0.0",

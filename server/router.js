@@ -1,4 +1,5 @@
 const fs = require('fs');
+const Promise = require('bluebird');
 const path = require('path');
 const router = require('koa-router')();
 const jwt = require('jsonwebtoken');
@@ -8,6 +9,7 @@ const jwtMiddleware = require('koa-jwt')({ secret: config.jwtSecret });
 const Archive = require('./models/archive');
 
 const upload = multer({ dest: config.uploadDir });
+const unlink = Promise.promisify(fs.unlink);
 
 router.post('/login', (ctx) => {
   const email = ctx.request.body.email;
@@ -70,7 +72,8 @@ router.put('/archives/:id', jwtMiddleware, async (ctx) => {
 router.delete('/archives/:id', jwtMiddleware, async (ctx) => {
   try {
     const id = ctx.params.id;
-    await Archive.findByIdAndRemove(id);
+    const archive = await Archive.findByIdAndRemove(id);
+    await unlink(archive.path);
     ctx.response.body = true;
   } catch (e) {
     ctx.throw(e);
