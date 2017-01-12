@@ -85,11 +85,9 @@ router.post('/archives', jwtMiddleware, upload.single('archive'), async (ctx) =>
     const file = ctx.req.file;
     const archive = new Archive({
       name: path.basename(file.originalname),
-      originalName: file.originalname,
       size: file.size,
       path: file.path,
       mimetype: file.mimetype,
-      url: file.path.replace(/\\/g, '/'),
     });
     await archive.save();
     ctx.response.body = archive;

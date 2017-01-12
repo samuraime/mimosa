@@ -6,7 +6,6 @@ const ArchiveSchema = new Schema({
   name: String,
   path: String,
   size: Number,
-  url: String,
   mimetype: String,
   tags: Array,
   comment: { type: String, default: '' },
