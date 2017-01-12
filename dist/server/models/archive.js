@@ -17,7 +17,7 @@ ArchiveSchema.statics = {
   list: function(options = {}) {
     const criteria = options.criteria || {};
     const page = options.page || 0;
-    const limit = options.limit || 100;
+    const limit = options.limit || 1000;
     return this.find(criteria)
       .sort({ createdAt: -1 })
       .limit(limit)
